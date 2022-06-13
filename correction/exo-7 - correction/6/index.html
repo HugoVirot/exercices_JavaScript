@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<script src="datas.js"></script>
+		<script src="exo7.js"></script>
+	</head>
+    <body>
+		<div class="container">
+			<h1>Exercice 7</h1>
+		</div>
+		<div>
+			<div class="form-group">
+				<label for="show-empty">Show unavailable items</label>
+				<input type="checkbox" id="show-empty" checked />
+			</div>
+			<br/>
+			<div class="form-group">
+				<label for="type">Item type</label>
+				<input id="type" value="videoGame" type="text"/>
+			</div>
+			<br/>
+			<div class="form-group">
+				<label for="sort-type">Sort by</label>
+				<select id="sort-type">
+					<option value="default" selected></option>
+					<option value="name">Nom</option>
+					<option value="price">Prix</option>
+				</select>
+				<label for="sort-order">Order</label>
+				<select id="sort-order">
+					<option value="asc">ASC</option>
+					<option value="desc">DESC</option>
+				</select>
+			</div>
+			<br/>
+			<button onclick="displayItems()" type="button">Display</button>
+		</div>
+	</body>
+</html>

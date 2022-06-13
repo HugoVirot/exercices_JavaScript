@@ -1,0 +1,144 @@
+<!doctype html>
+<html  lang="fr">
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="datas.js"></script>
+
+    </head>
+    <body>
+		<div class="container-fluid">
+			<h1>Exercice 7</h1>
+			
+			<ul class="nav nav-tabs"  role="tablist">
+			  <li class="nav-item"><a class="nav-link active" id="table-tab-nav" data-toggle="tab"  role="tab"  href="#table-tab" aria-controls="table-tab" aria-selected="true">Table</a></li>
+			  <li class="nav-item"><a class="nav-link " id="form-tab-nav" data-toggle="tab"  role="tab" href="#form-tab" aria-controls="form-tab"  aria-selected="false">Formulaire</a></li>
+			  <li class="nav-item"><a class="nav-link " id="cart-tab-nav" data-toggle="tab"  role="tab" href="#cart-tab" aria-controls="cart-tab"  aria-selected="false">Panier</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="table-tab" role="tabpanel" class="tab-pane fade show active" aria-labelledby="table-tab-nav">
+					<br/>
+					<div class="row">
+						<div class="col-3">
+							<div class="form-group">
+								<label for="show-empty">Show unavailable items</label>
+								<input  type="checkbox" id="show-empty" checked />
+							</div>
+							<div class="form-group">
+								<label for="type">Item type</label>
+								<select  class="form-control" id="type">
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="sort-type">Sort by</label>
+								<select  class="form-control" id="sort-type">
+									<option value="default" selected></option>
+									<option value="name">Nom</option>
+									<option value="price">Prix</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="sort-order">Order</label>
+								<select  class="form-control" id="sort-order">
+									<option value="asc">ASC</option>
+									<option value="desc">DESC</option>
+								</select>
+							</div>
+							<button onclick="displayItems()" type="button">Filter</button>
+						</div>
+						
+						<div class="col-9">
+							<table id="items-table" class="table table-striped">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Nom</th>
+										<th>Description</th>
+										<th>Type</th>
+										<th>Prix</th>
+										<th>Quantité</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>		
+							</table>
+							
+							<button type="button" class="btn btn-primary" onClick="addToCart()">Add To cart</button>
+						</div>
+					</div>
+				</div>
+				<div id="form-tab" role="tabpanel"  class="tab-pane fade" aria-labelledby="form-tab-nav">
+					
+					<form id="add-item-form">
+						<div class="form-group">
+							<label for="form-add-name">Item Name</label>
+							<input id="form-add-name" class="form-control"name="name" type="text"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-description">Description</label>
+							<input id="form-add-description" class="form-control" name="description" type="textarea"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-type">Type</label>
+							<input id="form-add-type" class="form-control" name="type" type="text"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-price">Price</label>
+							<input id="form-add-price" class="form-control" name="price" type="number"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-quantity">Quantity</label>
+							<input id="form-add-quantity" class="form-control" name="quantity"  type="number"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-first-name">Fist Name</label>
+							<input id="form-add-first-name" class="contact form-control" name="firstName"  type="text"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-last-name">Nom de famille</label>
+							<input id="form-add-last-name" class="contact form-control" name="lastName"  type="text"/>
+						</div>
+						<div class="form-group">
+							<label for="form-add-address">Adresse</label>
+							<input id="form-add-address" class="contact form-control" name="address"  type="text"/>
+						</div>
+					</form>
+					<button type="button" class="btn btn-primary" onClick="processForm()">Add me</button>
+				</div>
+				<div id="cart-tab" role="tabpanel"  class="tab-pane fade" aria-labelledby="cart-tab-nav">
+				<br/>
+					<table id="cart-table" class="table table-striped tfootlight">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Description</th>
+								<th>Type</th>
+								<th>Prix</th>
+								<th>Quantité</th>
+							</tr>
+						</thead>	
+						<tfoot>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th  class="table-info"><span id="cart-total-price">0</span></th>
+								<th  class="table-info"><span id="cart-total-quantity">nb items : 0</span></th>
+							</tr>
+						</tfoot>
+						<tbody>
+						</tbody>	
+					</table>
+					<button type="button" class="btn btn-primary" onClick="validateCart()">Validate</button>
+				</div>
+
+			</div>			
+		</div>
+		<script src="exo7.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
